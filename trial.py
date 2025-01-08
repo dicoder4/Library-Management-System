@@ -143,4 +143,18 @@ def borrow_book(self):
             messagebox.showerror("Error", "Book not found or not available!")
         else:
             messagebox.showerror("Error", "Please fill all fields!")
-
+  def return_book(self):
+        isbn = self.return_isbn_entry.get()
+        
+        if isbn:
+            for book in self.books:
+                if book['isbn'] == isbn and not book['available']:
+                    book['available'] = True
+                    self.borrowed_books.pop(isbn, None)
+                    messagebox.showinfo("Success", "Book returned successfully!")
+                    self.clear_entries()
+                    self.refresh_book_list()
+                    return
+            messagebox.showerror("Error", "Book not found or already returned!")
+        else:
+            messagebox.showerror("Error", "Please enter ISBN!")
