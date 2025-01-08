@@ -37,3 +37,35 @@ class LibrarySystem:
         
         # Configure entry style
         style.configure("Modern.TEntry", padding=5)
+    def create_widgets(self):
+        # Main container
+        main_frame = ttk.Frame(self.root, style="MainFrame.TFrame")
+        main_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
+        
+        # Title
+        title = ttk.Label(main_frame, 
+                         text="Library Management System",
+                         font=('Helvetica', 24, 'bold'),
+                         foreground="white",
+                         background="#2c3e50")
+        title.pack(pady=20)
+        
+        # Create notebook for tabs
+        notebook = ttk.Notebook(main_frame)
+        notebook.pack(fill=tk.BOTH, expand=True)
+        
+        # Add Books Tab
+        add_books_frame = ttk.Frame(notebook, style="Card.TFrame")
+        notebook.add(add_books_frame, text="Add Books")
+        self.create_add_books_tab(add_books_frame)
+        
+        # Borrow/Return Tab
+        borrow_frame = ttk.Frame(notebook, style="Card.TFrame")
+        notebook.add(borrow_frame, text="Borrow/Return")
+        self.create_borrow_tab(borrow_frame)
+        
+        # View Books Tab
+        view_frame = ttk.Frame(notebook, style="Card.TFrame")
+        notebook.add(view_frame, text="View Books")
+        self.create_view_tab(view_frame)
+
