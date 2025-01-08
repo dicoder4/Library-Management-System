@@ -173,3 +173,16 @@ def borrow_book(self):
                 book['isbn'],
                 status
             ))
+  def clear_entries(self):
+        # Clear all entry fields
+        self.title_entry.delete(0, tk.END)
+        self.author_entry.delete(0, tk.END)
+        self.isbn_entry.delete(0, tk.END)
+        self.borrow_isbn_entry.delete(0, tk.END)
+        self.user_id_entry.delete(0, tk.END)
+        self.return_isbn_entry.delete(0, tk.END)
+
+if _name_ == "_main_":
+    root = tk.Tk()
+    app = LibrarySystem(root)
+    root.mainloop()
