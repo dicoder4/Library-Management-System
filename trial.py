@@ -88,4 +88,43 @@ class LibrarySystem:
         ttk.Button(parent, text="Add Book", 
                   command=self.add_book,
                   style="Modern.TButton").pack(pady=20)
+    def create_view_tab(self, parent):
+        # Create Treeview
+        columns = ('title', 'author', 'isbn', 'status')
+        self.tree = ttk.Treeview(parent, columns=columns, show='headings')
+        
+        # Define headings
+        self.tree.heading('title', text='Title')
+        self.tree.heading('author', text='Author')
+        self.tree.heading('isbn', text='ISBN')
+        self.tree.heading('status', text='Status')
+        
+        # Configure column widths
+        for col in columns:
+            self.tree.column(col, width=150)
+        
+        self.tree.pack(fill=tk.BOTH, expand=True, pady=10)
+        
+        # Refresh button
+        ttk.Button(parent, text="Refresh List",
+                  command=self.refresh_book_list,
+                  style="Modern.TButton").pack(pady=10)
+
+    def add_book(self):
+        title = self.title_entry.get()
+        author = self.author_entry.get()
+        isbn = self.isbn_entry.get()
+        
+        if title and author and isbn:
+            self.books.append({
+                'title': title,
+                'author': author,
+                'isbn': isbn,
+                'available': True
+            })
+            messagebox.showinfo("Success", "Book added successfully!")
+            self.clear_entries()
+            self.refresh_book_list()
+        else:
+            messagebox.showerror("Error", "Please fill all fields!")
 
