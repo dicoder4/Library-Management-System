@@ -158,3 +158,18 @@ def borrow_book(self):
             messagebox.showerror("Error", "Book not found or already returned!")
         else:
             messagebox.showerror("Error", "Please enter ISBN!")
+
+  def refresh_book_list(self):
+        # Clear the tree
+        for item in self.tree.get_children():
+            self.tree.delete(item)
+        
+        # Repopulate with current data
+        for book in self.books:
+            status = "Available" if book['available'] else "Borrowed"
+            self.tree.insert('', tk.END, values=(
+                book['title'],
+                book['author'],
+                book['isbn'],
+                status
+            ))
