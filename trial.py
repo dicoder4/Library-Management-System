@@ -127,4 +127,20 @@ class LibrarySystem:
             self.refresh_book_list()
         else:
             messagebox.showerror("Error", "Please fill all fields!")
+def borrow_book(self):
+        isbn = self.borrow_isbn_entry.get()
+        user_id = self.user_id_entry.get()
+        
+        if isbn and user_id:
+            for book in self.books:
+                if book['isbn'] == isbn and book['available']:
+                    book['available'] = False
+                    self.borrowed_books[isbn] = user_id
+                    messagebox.showinfo("Success", "Book borrowed successfully!")
+                    self.clear_entries()
+                    self.refresh_book_list()
+                    return
+            messagebox.showerror("Error", "Book not found or not available!")
+        else:
+            messagebox.showerror("Error", "Please fill all fields!")
 
