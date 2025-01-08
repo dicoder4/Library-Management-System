@@ -68,4 +68,24 @@ class LibrarySystem:
         view_frame = ttk.Frame(notebook, style="Card.TFrame")
         notebook.add(view_frame, text="View Books")
         self.create_view_tab(view_frame)
+   def create_add_books_tab(self, parent):
+        # Book Title
+        ttk.Label(parent, text="Book Title:", style="White.TLabel").pack(pady=5)
+        self.title_entry = ttk.Entry(parent, width=40, style="Modern.TEntry")
+        self.title_entry.pack(pady=5)
+        
+        # Author
+        ttk.Label(parent, text="Author:", style="White.TLabel").pack(pady=5)
+        self.author_entry = ttk.Entry(parent, width=40, style="Modern.TEntry")
+        self.author_entry.pack(pady=5)
+        
+        # ISBN
+        ttk.Label(parent, text="ISBN:", style="White.TLabel").pack(pady=5)
+        self.isbn_entry = ttk.Entry(parent, width=40, style="Modern.TEntry")
+        self.isbn_entry.pack(pady=5)
+        
+        # Add Button
+        ttk.Button(parent, text="Add Book", 
+                  command=self.add_book,
+                  style="Modern.TButton").pack(pady=20)
 
